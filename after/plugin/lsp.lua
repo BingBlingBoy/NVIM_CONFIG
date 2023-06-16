@@ -27,21 +27,43 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ["<C-Space>"] = cmp.mapping.complete(),
 })
 
-local lspconfig = require('lspconfig')
-local configs = require('lspconfig/configs')
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-lspconfig.emmet_ls.setup({
-    -- on_attach = on_attach,
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+--require("lspconfig")["emmet_ls"].setup({
+--    on_attach = on_attach,
+--    capabilities = capabilities,
+--})
+
+require("lspconfig")["tsserver"].setup({
+    on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
-    init_options = {
-      html = {
-        options = {
-          -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-          ["bem.enabled"] = true,
-        },
-      },
-    }
 })
+
+require("lspconfig")["cssls"].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+
+
+-- Only uncomment the stuff below if you want emmet_ls. This means that every first suggestion is an html tag
+
+--local lspconfig = require('lspconfig')
+--local configs = require('lspconfig/configs')
+--local capabilities = vim.lsp.protocol.make_client_capabilities()
+--capabilities.textDocument.completion.completionItem.snippetSupport = true
+--
+--lspconfig.emmet_ls.setup({
+--    -- on_attach = on_attach,
+--    capabilities = capabilities,
+--    filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
+--    init_options = {
+--      html = {
+--        options = {
+--          -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+--          ["bem.enabled"] = true,
+--        },
+--      },
+--    }
+--})
