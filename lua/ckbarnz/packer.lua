@@ -59,4 +59,11 @@ return require('packer').startup(function(use)
       config = function() require("nvim-autopairs").setup {} end
   }
   use ('ianks/vim-tsx')
+
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+      end
+  }
 end)

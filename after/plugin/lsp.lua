@@ -30,10 +30,10 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
---require("lspconfig")["emmet_ls"].setup({
---    on_attach = on_attach,
---    capabilities = capabilities,
---})
+require("lspconfig")["emmet_ls"].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
 
 require("lspconfig")["tsserver"].setup({
     on_attach = on_attach,
